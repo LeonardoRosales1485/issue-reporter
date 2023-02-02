@@ -4,6 +4,8 @@ const app = express();
 const key = "leonardorosales1485@gmail.com:ATATT3xFfGF02ySUiRz3S5VNvgjhYCi7nL77P6ADVzNRhfhYi6CPYbSZOv_wSIqodULxE1WuJR6d0y4oUKtaKAARA6Ao73_MZkzrMvFEA3eNz4dGrn0P1R0lB0RFtueXxqQlmBhc3uAZ7u3YkmDp6SfFfeWToP390_rKaWCAQ7MPI8jK0HSed18=DEA3C616"
 const fetch = require('node-fetch');
 
+const PORT = process.env.PORT || 2020;
+
 
 const bodyData = `{
   "filterId": 10020,
@@ -16,6 +18,8 @@ const bodyData = `{
 }`;
 
 app.use(cors())
+app.use(bodyParse.urlencoded({ extended: true }))
+app.use(bodyParse.json());
 
 app.get('/', (req, res) => {
     res.json({
@@ -79,6 +83,6 @@ app.get('/get-on-going-issuesPARSED', (req, res) => {
         .catch(err => console.error(err));
 });
 
-app.listen(80, () => {
+app.listen(PORT, () => {
     console.log('server is listening on port 2020');
 });
