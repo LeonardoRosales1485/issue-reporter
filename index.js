@@ -1,11 +1,14 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParse = require('body-parser')
 const app = express();
-const key = "leonardorosales1485@gmail.com:ATATT3xFfGF02ySUiRz3S5VNvgjhYCi7nL77P6ADVzNRhfhYi6CPYbSZOv_wSIqodULxE1WuJR6d0y4oUKtaKAARA6Ao73_MZkzrMvFEA3eNz4dGrn0P1R0lB0RFtueXxqQlmBhc3uAZ7u3YkmDp6SfFfeWToP390_rKaWCAQ7MPI8jK0HSed18=DEA3C616"
+const key = "leonardorosales1485@gmail.com:ATATT3xFfGF0qnuuU8JmJO0g-i1S45sNi6jVyt9W1ruJE5RA2chkfOJa9lNgj7QVH1yalkULgLzQXFYi9dGPgONU9DplUwvThL5t3OjQ5Rt7zQXoOUmczZ8pcbYfxs0lnIDogFABBOI8VXOXs2a4EFFpFQqXnQwIXw7RKgV1XiZeZiaSxKHenPY=108BF2B3"
 const fetch = require('node-fetch');
 
 const PORT = process.env.PORT || 2020;
-
+app.use(cors())
+app.use(bodyParse.urlencoded({ extended: true }))
+app.use(bodyParse.json());
 
 const bodyData = `{
   "filterId": 10020,
@@ -17,9 +20,7 @@ const bodyData = `{
   "type": "scrum"
 }`;
 
-app.use(cors())
-app.use(bodyParse.urlencoded({ extended: true }))
-app.use(bodyParse.json());
+
 
 app.get('/', (req, res) => {
     res.json({
@@ -43,6 +44,7 @@ app.get('/get-on-going-issues', (req, res) => {
     })
         .then(async function(response) {
             var wtf = await response.text();
+            console.log(wtf);
             const parsed = JSON.parse(wtf)
             const parsedIssues = parsed.issues
             console.log(typeof parsedIssues);
@@ -84,5 +86,5 @@ app.get('/get-on-going-issuesPARSED', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log('server is listening on port 2020');
+    console.log(`server is listening on port ${PORT}`);
 });
