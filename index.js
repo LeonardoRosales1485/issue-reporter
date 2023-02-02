@@ -79,6 +79,6 @@ app.get('/get-on-going-issuesPARSED', (req, res) => {
         .catch(err => console.error(err));
 });
 
-app.listen(2020, () => {
+app.listen(80, () => {
     console.log('server is listening on port 2020');
 });
