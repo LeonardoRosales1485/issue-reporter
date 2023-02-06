@@ -32,6 +32,10 @@ app.get('/get-done-issues', (req, res) => {
     getDoneIssues(res)
 });
 
+app.get('/auth', (req, res) => {
+    getDoneIssues(res)
+});
+
 app.listen(PORT, () => {
     console.log(`server is listening on port ${PORT}`);
 });
