@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { key } = process.env.KEY || require("../doNotUploadToProd")
+const { key } = process.env.KEY || require("../keys/doNotUploadToProd")
 const { sendOnGoingTasks } = require("./sendOnGoingTasks")
 
 //Memory variables

@@ -1,5 +1,6 @@
 const { WebClient } = require('@slack/web-api');
-const { token } = process.env.TOKEN || require("../doNotUploadToProd")
+const { token } = process.env.TOKEN || require("../keys/doNotUploadToProd")
+const { channel } = require("./utils")
 const slack = new WebClient(token);
 
 //Memory variables
@@ -7,9 +8,6 @@ let counter = 0
 //Memory variables
 
 function sendOnGoingTasks(data) {
-    console.log("dataabajo");
-    console.log(data);
-    console.log("dataarriba");
     let list
     data.forEach(element => {
         counter++
@@ -25,7 +23,7 @@ function sendOnGoingTasks(data) {
             + element["Asignado"] + "\n"
     })
     slack.chat.postMessage({
-        channel: '#laboratorio-de-pruebas',
+        channel: channel,
         text: `Hay ${counter} tasks que están en curso\n${list}`
     })
         .then(() => {

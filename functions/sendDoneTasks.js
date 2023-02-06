@@ -1,5 +1,6 @@
 const { WebClient } = require('@slack/web-api');
-const { token } = process.env.TOKEN || require("../doNotUploadToProd")
+const { token } = process.env.TOKEN || require("../keys/doNotUploadToProd")
+const { channel } = require("./utils")
 const slack = new WebClient(token);
 
 //Memory variables
@@ -23,7 +24,7 @@ function sendDoneTasks(data) {
             + element["Asignado"] + "\n"
     })
     slack.chat.postMessage({
-        channel: '#laboratorio-de-pruebas',
+        channel: channel,
         text: `Hay ${counter} tasks que están finalizadas\n${lista}`
     })
         .then(() => {
