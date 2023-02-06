@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { key } = process.env.KEY
+const key = process.env.KEY
 const { sendPendingTasks } = require("./sendPendingTasks")
 
 //Memory variables
